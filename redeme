@@ -1,0 +1,47 @@
+"""
+
+
+            ----------大润发超市----------
+            票号：动态生成码  机号：001   工号：002
+            交易时间：%s
+            商品名称:%s     数量：%d    金额：%d
+            -----------------------------
+
+            应收金额：%d
+            实收银联卡：%d
+            ------------------------------
+            请收好小票，钱物及时核对
+            如需退货请于7日内办理，如需换货请于5日内办理，谢谢！
+
+            """ % (time.strftime('%Y-%m-d %H:%M:%S'),
+                   user_info['good_name'],
+                   user_info['good_num'],
+                   user_info['good_price'],
+                   user_info['good_num'] * user_info['good_price'],
+                   user_info['good_num'] * user_info['good_price']
+
+                   ))
+
+
+elif choice == 'q':
+                    print("""
+                    ---------------------------------已购买商品列表---------------------------------
+                    id          商品                   数量             单价               总价
+                    """)
+
+                    total_cost=0
+                    for i,key in enumerate(shopping_cart):
+                        print('%22s%18s%18s%18s%18s' %(
+                            i,
+                            key,
+                            shopping_cart[key]['count'],
+                            shopping_cart[key]['pprice'],
+                            shopping_cart[key]['pprice'] * shopping_cart[key]['count']
+                        ))
+                        total_cost+=shopping_cart[key]['pprice'] * shopping_cart[key]['count']
+
+                    print("""
+                    您的总花费为: %s
+                    您的余额为: %s
+                    ---------------------------------end---------------------------------
+                     """ %(total_cost,balance_of_db))
